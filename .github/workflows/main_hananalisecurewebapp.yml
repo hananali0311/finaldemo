@@ -1,6 +1,6 @@
-# Simple HTML Deployment to Azure App Service
+# HTML Deployment to Azure App Service (staging2 slot)
 
-name: Deploy HTML site to Azure Web App - hananalisecurewebapp
+name: Deploy HTML site to Azure Web App - app-hananali-staging2
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: html-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -44,9 +44,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4AF2DDA26EA9474490B765845EAACBFD }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_400C17905F344115B1927F5C8D32D7BD }}
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure Web App (staging2)
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'hananalisecurewebapp'
-          slot-name: 'Production'
+          app-name: 'app-hananali'
+          slot-name: 'staging2'
           package: .
